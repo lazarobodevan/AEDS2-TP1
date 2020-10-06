@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct NoTST* ApontadorTST;
 typedef struct NoTST {
+    int FinalPalavra;
     char caractere;
     int NumerodePalavras;
-    struct NoTST * Central;
-    struct NoTST * Esquerda;
-    struct NoTST * Direita;
-    
+    ApontadorTST Central;
+    ApontadorTST Esquerda;
+    ApontadorTST Direita;
 }NoTST;
 
 
-int InicializaNoTST( NoTST ** no);
-int CriarNoTST(NoTST **no, char caractere);
-int InserirNaArvore(NoTST ** no, char palavra);
+int InicializaNoTST( ApontadorTST* no);
+int CriarNoTST(ApontadorTST* no, char caractere);
+int InserirNaArvore(ApontadorTST* no, char *palavra);
