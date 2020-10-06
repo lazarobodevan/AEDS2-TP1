@@ -23,7 +23,7 @@ int CriarNoTST(ApontadorTST *no, char caractere){
 }
 
 
-int InserirNaArvore(ApontadorTST * no, char *palavra){
+void InserirNaArvore(ApontadorTST * no, char *palavra){
     if(!(*no)) CriarNoTST(no, *palavra); /* if node == null */
     
     if((*palavra) > (*no)->caractere) { 

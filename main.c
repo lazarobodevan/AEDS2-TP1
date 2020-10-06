@@ -1,7 +1,9 @@
 #include "Pat.h"
+#include "trie.h"
 
 int main()
 {
+    ArvoreTST tst;
 
     Palavra palavraTeste, segundaPala, tercPala, quaPala;
     palavraTeste = EncapsulaVocabulo("pata");
@@ -41,6 +43,11 @@ int main()
     }
     */
 
-    printf("\nHello world!\n");
+    InicializaNoTST(&tst);
+    InserirNaArvore(&tst, "Teste");
+    printf("%c", tst->caractere);
+    printf("%c", tst->Central->caractere);
+    printf("%c\n", tst->Central->Central->caractere);
+    
     return 0;
 }

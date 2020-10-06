@@ -3,6 +3,8 @@
 #include <string.h>
 
 typedef struct NoTST* ApontadorTST;
+typedef struct NoTST* ArvoreTST;
+
 typedef struct NoTST {
     int FinalPalavra;
     char caractere;
@@ -15,4 +17,4 @@ typedef struct NoTST {
 
 int InicializaNoTST( ApontadorTST* no);
 int CriarNoTST(ApontadorTST* no, char caractere);
-int InserirNaArvore(ApontadorTST* no, char *palavra);
+void InserirNaArvore(ApontadorTST* no, char *palavra);
