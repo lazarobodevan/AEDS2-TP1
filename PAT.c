@@ -1,71 +1,21 @@
-#include "Pat.h"
+#include "PAT.h"
+#include <string.h>
 
-
-
-int ValorDaPalavra(char *vocabulo){
-
-    if (*(vocabulo + 1) == '\0'){
-
-        return *(vocabulo);
-    }
-
-    return ValorDaPalavra((vocabulo + 1)) + *(vocabulo);
-}
-
-void TraduzParaBinario(int valor, int *vet){
-
-    int i = Tamanho - 1;
-
-    while (i >= 0) {
-
-        vet[i] = valor % 2;
-        valor = valor / 2;
-        i--;
-    }
-    /*
-    for (i = 0; i < 10; i++){
-        printf("%d", vet[i]);
-    }
-    */
-}
-
-Palavra EncapsulaVocabulo(char *vocabulo){
-
-    Palavra palavraPronta;
-    int ValorVocabulo;
-
-    ValorVocabulo = ValorDaPalavra(vocabulo);
-
-    printf("Soma: %d\n", ValorVocabulo);
-    TraduzParaBinario(ValorVocabulo, palavraPronta.codigoBinario);
-
-
-    palavraPronta.vocabulo = (char*) malloc(strlen(vocabulo) * sizeof(char));
-
-    strcpy((palavraPronta.vocabulo), (vocabulo));
-
-    return palavraPronta;
-}
-
-void Inicializar(TipoArvore *tree){
-
+void InicializarPat(TipoArvore *tree){
     *tree = NULL;
 }
 
-int Bit(int numQueDifereNoInterno, Palavra palavra){  /// FunÁ„o Bit
 
-    return palavra.codigoBinario[numQueDifereNoInterno -1];
+int Bit(int numQueDifereNoInterno, char *palavra){  /// Funcao Bit
+    return palavra[numQueDifereNoInterno -1];
 }
 
 int VerificarNoExterno(TipoArvore tree){
-
     return (tree->idEstruturalNo == Externo);
 }
 
 TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir){ /// i -> quantidade que difere enre pontos
-
     TipoArvore pAjudante;
-
     pAjudante = (TipoArvore) malloc(sizeof(PatriciaNo));
 
     pAjudante->idEstruturalNo = Interno;
@@ -79,8 +29,7 @@ TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir){ /// i -> quan
 }
 
 
-TipoArvore CriaNoExterno(Palavra palavra){
-
+TipoArvore CriaNoExterno(char *palavra){
     int j;
     TipoArvore pAjudante;
 
@@ -88,24 +37,22 @@ TipoArvore CriaNoExterno(Palavra palavra){
 
     pAjudante->idEstruturalNo = Externo;
 
-    pAjudante->No.Chave.vocabulo = (char*) malloc (strlen(palavra.vocabulo) * sizeof(char));
-    strcpy(pAjudante->No.Chave.vocabulo, palavra.vocabulo);
-    /// PRECISA ARRUMAR OS BITS NO N”
+    pAjudante->No.Chave = (char*) malloc (strlen(palavra) * sizeof(char));
+    strcpy(pAjudante->No.Chave, palavra);
+
+    /// PRECISA ARRUMAR OS BITS NO NO
     ///strcpy(pAjudante->No.Chave.codigoBinario, palavra.codigoBinario);
 
     for (j = 0; j < 10; j++){
-
-        pAjudante->No.Chave.codigoBinario[j] = palavra.codigoBinario[j];
+        pAjudante->No.Chave = palavra;
     }
     return pAjudante;
 }
 
-TipoArvore InsereEntre(Palavra palavra, TipoArvore *tree, int i){
+TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i){
 
     TipoArvore pAjudante;
-
     if (VerificarNoExterno(*tree) || i < (*tree)->No.NoInterno.numBitOndeDifere){
-
         pAjudante = CriaNoExterno(palavra);
 
         if (Bit(i, palavra) == 1) {
@@ -131,10 +78,11 @@ TipoArvore InsereEntre(Palavra palavra, TipoArvore *tree, int i){
     }
 }
 
-TipoArvore Insere(Palavra palavra, TipoArvore *tree){
+TipoArvore InserePat(char *palavra, TipoArvore *tree){
 
     TipoArvore pAjudante;
     int i;
+    printf("bao memo\n");
 
     if (*tree == NULL){
 
@@ -173,4 +121,21 @@ TipoArvore Insere(Palavra palavra, TipoArvore *tree){
             return InsereEntre(palavra, tree, i);
         }
     }
+}
+
+//-------------------------------------------------
+void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq){
+    arq = fopen("testes.txt", "r");
+    if(arq == NULL){
+        printf("Arquivo n√£o encontrado!\n");
+        return;
+    }
+    char aux[20];
+    while(!feof(arq)){
+        fscanf(arq, "%s ", aux);
+        strcpy(&aux[strlen(aux)], "\0");
+        InserePat(aux, pat);
+        InsereTst(tst, aux);
+    }
+
 }
