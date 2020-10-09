@@ -5,25 +5,21 @@ int main()
 {
     ArvoreTST tst;
 
-    Palavra palavraTeste, segundaPala, tercPala, quaPala;
-    palavraTeste = EncapsulaVocabulo("pata");
-    segundaPala = EncapsulaVocabulo("pato");
-    tercPala = EncapsulaVocabulo("aviao");
-    quaPala = EncapsulaVocabulo("pato");
+    char palavra[] = "bolo";
+    char p2[] = "bobo";
+    char p3[] = "bao";
+    char p4[] = "belo";
+    TipoArvore patos;
 
-    TipoArvore semente;
+    InicializarPat(&patos);
 
-    Inicializar(&semente);
+    patos = InserePat(palavra, &patos);
+    patos = InserePat(p2, &patos);
+    patos = InserePat(p3, &patos);
+    patos = InserePat(p4, &patos);
+    Pesquisa(&patos, palavra);
 
-    semente = Insere(palavraTeste, &semente);
-
-    semente = Insere(segundaPala, &semente);
-
-    semente = Insere(tercPala, &semente);
-
-    semente = Insere(quaPala, &semente);
-
-    printf("%d\n", semente->No.NoInterno.numBitOndeDifere);
+    //printf("%d\n", patos->No.NoInterno.numBitOndeDifere);
 
 
 
