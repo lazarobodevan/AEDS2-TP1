@@ -32,19 +32,14 @@ TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir, char *palavra)
 
         pAjudante->No.NoInterno.letraNoPontoQueDifere = palavra[i-1];
 
-    } else if ((*Dir)->idEstruturalNo == Interno) {
-        pAjudante->No.NoInterno.letraNoPontoQueDifere = (*Esq)->No.Chave[i-1];
+    } else if ((*Esq)->idEstruturalNo == Interno) {
+
+        pAjudante->No.NoInterno.letraNoPontoQueDifere = (*Esq)->No.NoInterno.letraNoPontoQueDifere;
     } else {
 
-        pAjudante->No.NoInterno.letraNoPontoQueDifere = (*Dir)->No.Chave[i-1];
-
+        pAjudante->No.NoInterno.letraNoPontoQueDifere = (*Esq)->No.Chave[i-1];
     }
-
-
-
-
-
-
+    //printf("%c\n", pAjudante->No.NoInterno.letraNoPontoQueDifere);
     return pAjudante;
 
 }
