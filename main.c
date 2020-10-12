@@ -1,53 +1,30 @@
 #include "Pat.h"
-#include "trie.h"
 
 int main()
 {
-    ArvoreTST tst;
+    char palavra[] = "bobo";
+    char p2[] = "bolo";
+    char p3[] = "bao";
+    char p4[] = "belo";
+    TipoArvore patos;
 
-    Palavra palavraTeste, segundaPala, tercPala, quaPala;
-    palavraTeste = EncapsulaVocabulo("pata");
-    segundaPala = EncapsulaVocabulo("pato");
-    tercPala = EncapsulaVocabulo("aviao");
-    quaPala = EncapsulaVocabulo("pato");
+    InicializarPat(&patos);
 
-    TipoArvore semente;
 
-    Inicializar(&semente);
+    patos = InserePat(palavra, &patos);
+    patos = InserePat(p2, &patos);
 
-    semente = Insere(palavraTeste, &semente);
 
-    semente = Insere(segundaPala, &semente);
+    patos = InserePat(p3, &patos);
+    //patos = InserePat(p4, &patos);
+    Pesquisa(&patos, p3);
+    //printf("\n\nEsq: %s\n", patos->No.NoInterno.Esq->No.Chave);
 
-    semente = Insere(tercPala, &semente);
-
-    semente = Insere(quaPala, &semente);
-
-    printf("%d\n", semente->No.NoInterno.numBitOndeDifere);
+    //printf("%c\n", patos->No.NoInterno.letraNoPontoQueDifere);
 
 
 
 
-
-
-    /// Testes func basicas
-    /*
-    Palavra peleps;
-
-    peleps = EncapsulaVocabulo("retangulo");
-
-    printf("%s\n", peleps.vocabulo);
-
-    for (int i = 0; i < 10; i++){
-        printf("%d", peleps.codigoBinario[i]);
-    }
-    */
-
-    InicializaNoTST(&tst);
-    InserirNaArvore(&tst, "Teste");
-    printf("%c", tst->caractere);
-    printf("%c", tst->Central->caractere);
-    printf("%c\n", tst->Central->Central->caractere);
-    
+    printf("\nHello world!\n");
     return 0;
 }
