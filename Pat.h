@@ -19,9 +19,9 @@ typedef struct PatriciaNo {
     union {
         struct {
             char letraNoPontoQueDifere;
-            int numBitOndeDifere;
-            TipoArvore Esq, Dir;
-
+            int indiceOndeDifere; /// Ha um nivel de abstracao aqui, no qual o indice da primeira letra de uma palavra eh 1
+            TipoArvore Esq, Dir;  /// mas como a caontagem em strings comeca por 0, eh feita uma correcao dentro da funcao Bit
+                                  /// logo ao olhar para o valor guardado por esta variavel, atentar que a contagem comeca em 1
         } NoInterno ;
 
         char* Chave;
@@ -31,11 +31,11 @@ typedef struct PatriciaNo {
 } PatriciaNo;
 
 void InicializarPat(TipoArvore *tree);
-char Bit(int numQueDifereNoInterno, char *palavra);
+char Bit(int numIndiceDifere, char *palavra);
 int VerificarNoExterno(TipoArvore tree);
-TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir, char *palavra);
+TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir, char letra);
 TipoArvore CriaNoExterno(char *palavra);
-TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i);
+TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno);
 TipoArvore InserePat(char *palavra, TipoArvore *tree);
 void Pesquisa(TipoArvore *tree, char *palavra);
 
