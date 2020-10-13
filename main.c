@@ -2,10 +2,11 @@
 
 int main()
 {
-    char palavra[] = "bobo";
-    char p2[] = "bolo";
-    char p3[] = "bao";
-    char p4[] = "belo";
+    
+    char palavra[] = "poquer";
+    char p2[] = "porrete";
+    char p3[] = "paladar";
+    char p4[] = "peixe";
     TipoArvore patos;
 
     InicializarPat(&patos);
@@ -13,14 +14,9 @@ int main()
 
     patos = InserePat(palavra, &patos);
     patos = InserePat(p2, &patos);
-
-
     patos = InserePat(p3, &patos);
-    //patos = InserePat(p4, &patos);
-    Pesquisa(&patos, p3);
-    //printf("\n\nEsq: %s\n", patos->No.NoInterno.Esq->No.Chave);
-
-    //printf("%c\n", patos->No.NoInterno.letraNoPontoQueDifere);
+    patos = InserePat(p4, &patos);
+    Pesquisa(&patos, palavra);
 
 
 
