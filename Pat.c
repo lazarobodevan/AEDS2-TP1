@@ -1,4 +1,4 @@
-#include "PAT.h"
+#include "Pat.h"
 #include <string.h>
 
 void InicializarPat(TipoArvore *tree){
@@ -207,4 +207,3 @@ void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq){
     }
 }
 */
-

@@ -1,4 +1,5 @@
 #include "Pat.h"
+#include "trie.h"
 
 int main()
 {
@@ -18,8 +19,14 @@ int main()
     patos = InserePat(p4, &patos);
     Pesquisa(&patos, palavra);
 
-
-
+    /*
+    ArvoreTST tst;
+    InserirTST(&tst, "roi");
+    InicializaNoTST(&tst);
+    InserirTST(&tst, "leticia");
+    InserirTST(&tst, "ne");
+    PesquisaTST(tst, "leticia");
+    PesquisaTST(tst, "nes"); */
 
     printf("\nHello world!\n");
     return 0;

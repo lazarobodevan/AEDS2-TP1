@@ -17,4 +17,5 @@ typedef struct NoTST {
 
 int InicializaNoTST( ApontadorTST* no);
 int CriarNoTST(ApontadorTST* no, char caractere);
-void InserirNaArvore(ApontadorTST* no, char *palavra);
+void InserirTST(ApontadorTST* no, char *palavra);
+void PesquisaTST(ApontadorTST no, char *palavra);
