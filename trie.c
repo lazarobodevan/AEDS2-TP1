@@ -69,4 +69,24 @@ void PesquisaTST(ApontadorTST no, char *palavra) {
     } 
 }
 
+static void _EmOrdemTST(ApontadorTST no, char *buffer, int indice) {
+    if(no) {
+        _EmOrdemTST(no->Esquerda, buffer, indice);
+        buffer[indice] = no->caractere;
+
+        if(no->FinalPalavra) {
+            buffer[indice + 1] = '\0';
+            printf("%s\n", buffer);
+        }
+
+        _EmOrdemTST(no->Central, buffer, indice + 1);
+
+        _EmOrdemTST(no->Direita, buffer, indice);
+    }
+}
+
+void EmOrdemTST(ApontadorTST no) {
+    char Buffer[30]; /* não é possivel q uma palavra seja maior que 30 */ 
+    _EmOrdemTST(no, Buffer, 0);
+}
 

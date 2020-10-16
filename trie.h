@@ -19,3 +19,4 @@ int InicializaNoTST( ApontadorTST* no);
 int CriarNoTST(ApontadorTST* no, char caractere);
 void InserirTST(ApontadorTST* no, char *palavra);
 void PesquisaTST(ApontadorTST no, char *palavra);
+void EmOrdemTST(ApontadorTST no);

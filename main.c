@@ -19,15 +19,14 @@ int main()
     patos = InserePat(p4, &patos);
     Pesquisa(&patos, palavra);
 
-    /*
-    ArvoreTST tst;
-    InserirTST(&tst, "roi");
+    
+/*     ArvoreTST tst;
     InicializaNoTST(&tst);
+    InserirTST(&tst, "roi");
     InserirTST(&tst, "leticia");
     InserirTST(&tst, "ne");
-    PesquisaTST(tst, "leticia");
-    PesquisaTST(tst, "nes"); */
-
+    EmOrdemTST(tst); 
+ */
     printf("\nHello world!\n");
     return 0;
 }
