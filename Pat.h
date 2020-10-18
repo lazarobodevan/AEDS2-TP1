@@ -38,6 +38,8 @@ TipoArvore CriaNoExterno(char *palavra);
 TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno);
 TipoArvore InserePat(char *palavra, TipoArvore *tree);
 void Pesquisa(TipoArvore *tree, char *palavra);
+void PrintPatTree(TipoArvore *tree);
+void ContarPalavras(TipoArvore *tree, int *contador);
 
 //----------------------
 //void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq);
