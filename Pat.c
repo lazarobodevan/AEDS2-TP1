@@ -51,31 +51,34 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
 
     TipoArvore pAjudante;
 
-    if (VerificarNoExterno(*tree) || i < (*tree)->No.NoInterno.indiceOndeDifere){
+    /// Chegou num No externo
+    if (VerificarNoExterno(*tree)){
 
         pAjudante = CriaNoExterno(palavra);
+        /// Verifica qual das letras eh maior na posicao i, vai para a direita se for maior ou igual
+        if (Bit(i, palavra) >= Bit(i, (*tree)->No.Chave)) {
 
-        /// i esta marcando o ponto onde houve a diferenca, para verificar onde cada um sera inserido, compara as letras na posicao i
-        /// Leva em conta o '\0'
-        if ((*tree)->idEstruturalNo == Externo){
+            return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
 
-            if (Bit(i, palavra) >= (*tree)->No.Chave[i-1]) {
+        } else {
 
-                return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
-
-            }
+            return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
         }
-        if ((*tree)->idEstruturalNo == Interno){
+    /// Verifica se o i eh menor que o indice guardado no No interno
+    } else if (i < (*tree)->No.NoInterno.indiceOndeDifere) {
 
-            if (Bit(i, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere) {
+        pAjudante = CriaNoExterno(palavra);
+        /// Compara a letra guardada no No interno com a letra da palavra -mesma posicao-, se for menor vai para a esquerda
+         if (Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) < (*tree)->No.NoInterno.letraNoPontoQueDifere ) {
+            /// Verifica se a palavra que ira ser inserida na esquerda nao viola a regra dos iguais deve ir a direita
+            if (Bit(i, palavra) != letraNoInterno) {
 
-                return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
-
+                return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
             }
-        }
+         }
 
-         /// Posiciona a nova palavra a esquerda
-        return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
+        return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
+
 
     } else {
 
@@ -88,7 +91,7 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
             (*tree)->No.NoInterno.Esq = InsereEntre(palavra, &(*tree)->No.NoInterno.Esq, i, letraNoInterno);
         }
     }
-     return (*tree);
+    return (*tree);
 }
 
 TipoArvore InserePat(char *palavra, TipoArvore *tree){
@@ -158,11 +161,11 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
 }
 
 
-void Pesquisa(TipoArvore *tree, char *palavra){
+void Pesquisa(TipoArvore *tree, char *palavra, int *comparacoes){
 
-    if (VerificarNoExterno(*tree)){
+    if ((*comparacoes)++ && VerificarNoExterno(*tree)){
 
-        if (! strcmp((*tree)->No.Chave, palavra)){
+        if ((*comparacoes)++ && (!strcmp((*tree)->No.Chave, palavra))){
 
             printf("chave encontrada\n");
             return;
@@ -172,15 +175,44 @@ void Pesquisa(TipoArvore *tree, char *palavra){
             return;
         }
     }
-    if (Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere){
+    if ((*comparacoes)++ && Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere){
 
-        Pesquisa(&(*tree)->No.NoInterno.Dir, palavra);
+        Pesquisa(&(*tree)->No.NoInterno.Dir, palavra, comparacoes);
     } else {
 
-        Pesquisa(&(*tree)->No.NoInterno.Esq, palavra);
+        Pesquisa(&(*tree)->No.NoInterno.Esq, palavra, comparacoes);
     }
 }
 
+void PrintPatTree(TipoArvore *tree){
+
+    if (*tree != NULL){
+
+        if ((*tree)->idEstruturalNo == Externo){
+
+            printf("%s\n", (*tree)->No.Chave);
+        } else {
+
+            PrintPatTree(&(*tree)->No.NoInterno.Esq);
+            PrintPatTree(&(*tree)->No.NoInterno.Dir);
+        }
+    }
+}
+
+void ContarPalavras(TipoArvore *tree, int *contador){
+
+    if (*tree != NULL){
+
+        if ((*tree)->idEstruturalNo == Externo){
+
+            (*contador)++;
+        } else {
+
+            ContarPalavras(&(*tree)->No.NoInterno.Esq, contador);
+            ContarPalavras(&(*tree)->No.NoInterno.Dir, contador);
+        }
+    }
+}
 
 
 
