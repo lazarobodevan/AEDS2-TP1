@@ -224,18 +224,5 @@ void ContarPalavras(TipoArvore *tree, int *contador){
 
 //-------------------------------------------------
 /*
-void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq){
-    arq = fopen("testes.txt", "r");
-    if(arq == NULL){
-        printf("Arquivo não encontrado!\n");
-        return;
-    }
-    char aux[20];
-    while(!feof(arq)){
-        fscanf(arq, "%s ", aux);
-        strcpy(&aux[strlen(aux)], "\0");
-        InserePat(aux, pat);
-        InsereTst(tst, aux);
-    }
-}
+
 */

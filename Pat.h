@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "TRIE.h"
+//#include "trie.h"
 
 
 typedef enum {
@@ -42,6 +42,6 @@ void PrintPatTree(TipoArvore *tree);
 void ContarPalavras(TipoArvore *tree, int *contador);
 
 //----------------------
-//void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq);
+
 
 #endif //TP1_PAT_H
