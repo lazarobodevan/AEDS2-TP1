@@ -6,8 +6,7 @@ void InicializarPat(TipoArvore *tree){
 }
 
 char Bit(int numIndiceDifere, char *palavra){  /// Funcao Bit
-                                                                                /// um no interno, olhar dois atributos, se for externo, olha so um
-
+                                                                                
     /// o i na funcao comeca em 1, eh corrigido a seguir
     int posicao = numIndiceDifere - 1;
 
@@ -68,17 +67,14 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
     } else if (i < (*tree)->No.NoInterno.indiceOndeDifere) {
 
         pAjudante = CriaNoExterno(palavra);
-        /// Compara a letra guardada no No interno com a letra da palavra -mesma posicao-, se for menor vai para a esquerda
-         if (Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) < (*tree)->No.NoInterno.letraNoPontoQueDifere ) {
-            /// Verifica se a palavra que ira ser inserida na esquerda nao viola a regra dos iguais deve ir a direita
-            if (Bit(i, palavra) != letraNoInterno) {
-
-                return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
-            }
+        /// Compara a letra na posicao que diferiu com a letra escolhida para o No interno
+         if (Bit(i, palavra) >= letraNoInterno) {
+    
+            return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
+         } else {
+         
+            return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
          }
-
-        return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
-
 
     } else {
 
@@ -167,11 +163,11 @@ void Pesquisa(TipoArvore *tree, char *palavra, int *comparacoes){
 
         if ((*comparacoes)++ && (!strcmp((*tree)->No.Chave, palavra))){
 
-            printf("chave encontrada\n");
+            printf("Chave encontrada\n");
             return;
         } else {
 
-            printf("deu ruim\n");
+            printf("Chave nao se ecnontra na arvore\n");
             return;
         }
     }
