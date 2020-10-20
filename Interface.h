@@ -9,7 +9,9 @@
 
 void interface();
 void printOpc();
-void lerOpc(int *opc);
+void printOpcArvore();
+void leArquivoPatTst(TipoArvore *pat, NoTST **tst, FILE *arq);
+void leArquivoPat(TipoArvore *pat, FILE *arq);
+void leArquivoTst(NoTST **tst, FILE *arq);
 
-void leArquivo(TipoArvore *pat, NoTST **tst, FILE *arq);
 #endif //TP1_INTERFACE_H
