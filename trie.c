@@ -24,20 +24,25 @@ int CriarNoTST(ApontadorTST *no, char caractere){
 }
 
 
-void InserirTST(ApontadorTST *no, char *palavra){
+void InserirTST(ApontadorTST *no, char *palavra, int *comparacoes){
+    (*comparacoes)++;
     if(!(*no)) CriarNoTST(no, *palavra); /* if node == null */
     
+    (*comparacoes)++;
     if((*palavra) > (*no)->caractere) { 
-        InserirTST(&(*no)->Direita, palavra);
+        InserirTST(&(*no)->Direita, palavra, comparacoes);
         return;
     }
+    
+    (*comparacoes)++;
     if((*palavra) < (*no)->caractere) {
-        InserirTST(&(*no)->Esquerda, palavra);
+        InserirTST(&(*no)->Esquerda, palavra, comparacoes);
         return;
     }
 
-    if(*(palavra+1)){
-        InserirTST(&(*no)->Central, palavra+1);
+    (*comparacoes)++;
+    if(*(palavra+1)){  
+        InserirTST(&(*no)->Central, palavra+1, comparacoes);
     } else {
         (*no)->FinalPalavra = 1;
     }
@@ -45,16 +50,18 @@ void InserirTST(ApontadorTST *no, char *palavra){
 
 }
 
-void PesquisaTST(ApontadorTST no, char *palavra) {
+void PesquisaTST(ApontadorTST no, char *palavra, int *comparacoes) {
+    (*comparacoes)++;
     if(!no) { 
         printf("Chave não encontrada!!");
         return;
     }
 
+    (*comparacoes)++;
     if(*palavra < no->caractere) 
-        PesquisaTST(no->Esquerda, palavra);
-    else if(*palavra > no->caractere) 
-        PesquisaTST(no->Direita, palavra);
+        PesquisaTST(no->Esquerda, palavra, comparacoes);
+    else if(*palavra > no->caractere)
+        PesquisaTST(no->Direita, palavra, comparacoes);
     else {
         if(*(palavra+1) == '\0') {
             if(no->FinalPalavra){
@@ -65,7 +72,7 @@ void PesquisaTST(ApontadorTST no, char *palavra) {
                 return;
             }
         }
-        PesquisaTST(no->Central, palavra+1);
+        PesquisaTST(no->Central, palavra+1, comparacoes);
     } 
 }
 
