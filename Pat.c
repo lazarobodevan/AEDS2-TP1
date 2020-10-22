@@ -46,16 +46,16 @@ TipoArvore CriaNoExterno(char *palavra){
     return pAjudante;
 }
 
-TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno){
+TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno, int *compara){
 
     TipoArvore pAjudante;
 
     /// Chegou num No externo
-    if (VerificarNoExterno(*tree)){
+    if ((*comparacoes)++ && VerificarNoExterno(*tree)){
 
         pAjudante = CriaNoExterno(palavra);
         /// Verifica qual das letras eh maior na posicao i, vai para a direita se for maior ou igual
-        if (Bit(i, palavra) >= Bit(i, (*tree)->No.Chave)) {
+        if ((*comparacoes)++ && Bit(i, palavra) >= Bit(i, (*tree)->No.Chave)) {
 
             return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
 
@@ -64,11 +64,11 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
             return (CriaNoInterno(i, &pAjudante, tree, letraNoInterno));
         }
     /// Verifica se o i eh menor que o indice guardado no No interno
-    } else if (i < (*tree)->No.NoInterno.indiceOndeDifere) {
+    } else if ((*comparacoes)++ && i < (*tree)->No.NoInterno.indiceOndeDifere) {
 
         pAjudante = CriaNoExterno(palavra);
         /// Compara a letra na posicao que diferiu com a letra escolhida para o No interno
-         if (Bit(i, palavra) >= letraNoInterno) {
+         if ((*comparacoes)++ && Bit(i, palavra) >= letraNoInterno) {
     
             return (CriaNoInterno(i, tree, &pAjudante, letraNoInterno));
          } else {
@@ -79,18 +79,18 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
     } else {
 
         /// Nos internos, compara a letra guardada dentro do No com a letra na posicao i (onde difere), se for maior -> direita
-        if (Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere){
+        if ((*comparacoes)++ && Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere){
 
-            (*tree)->No.NoInterno.Dir = InsereEntre(palavra, &(*tree)->No.NoInterno.Dir, i, letraNoInterno);
+            (*tree)->No.NoInterno.Dir = InsereEntre(palavra, &(*tree)->No.NoInterno.Dir, i, letraNoInterno, compara);
         } else {
 
-            (*tree)->No.NoInterno.Esq = InsereEntre(palavra, &(*tree)->No.NoInterno.Esq, i, letraNoInterno);
+            (*tree)->No.NoInterno.Esq = InsereEntre(palavra, &(*tree)->No.NoInterno.Esq, i, letraNoInterno, compara);
         }
     }
     return (*tree);
 }
 
-TipoArvore InserePat(char *palavra, TipoArvore *tree){
+TipoArvore InserePat(char *palavra, TipoArvore *tree, int *compara){
 
     char letra;
     char letraDiferente;
@@ -98,18 +98,18 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
     int i;
     printf("bao memo\n");
 
-    if (*tree == NULL){
+    if ((*comparacoes)++ && *tree == NULL){
 
         return CriaNoExterno(palavra);
     } else {
 
         pAjudante = *tree;
 
-        while (!VerificarNoExterno(pAjudante)){
+        while ((*comparacoes)++ && !VerificarNoExterno(pAjudante)){
 
             /// Tratando casos
             /// Caso o numero no NO interno seja maior que o tamanho da palavra
-            if (pAjudante->No.NoInterno.indiceOndeDifere > strlen(palavra)){
+            if ((*comparacoes)++ && pAjudante->No.NoInterno.indiceOndeDifere > strlen(palavra)){
 
                 letra = palavra[strlen(palavra)];
             } else {
@@ -119,7 +119,7 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
 
                 /// Pega o numero do bit onde difere no No interno e pega aquela posicao na palavra a ser inserida,
                 /// depois compara com a letra guardada no No interno para decidir o caminho, maior/igual -> direita
-            if (letra >= pAjudante->No.NoInterno.letraNoPontoQueDifere){
+            if ((*comparacoes)++ && letra >= pAjudante->No.NoInterno.letraNoPontoQueDifere){
 
                 pAjudante = pAjudante->No.NoInterno.Dir;
             } else {
@@ -128,7 +128,7 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
             }
         }
 
-        if (strcmp(palavra, pAjudante->No.Chave) == 0){
+        if ((*comparacoes)++ && strcmp(palavra, pAjudante->No.Chave) == 0){
 
                 printf("Chaves sao iguais\n");
                 return (*tree);
@@ -137,13 +137,13 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
         /// Atencao, esta acessando o vetor a partir do indice 1
         i = 1;
 
-        while ( Bit(i, palavra) == Bit(i, pAjudante->No.Chave) ){
+        while ((*comparacoes)++ && Bit(i, palavra) == Bit(i, pAjudante->No.Chave) ){
 
             i++;
         }
 
         /// Pega a maior letra no ponto que difere entre as duas palavras
-        if (Bit(i, palavra) > Bit(i, pAjudante->No.Chave)){
+        if ((*comparacoes)++ && Bit(i, palavra) > Bit(i, pAjudante->No.Chave)){
 
             letraDiferente = palavra[i - 1]; /// Poderia substituir pela funcao Bit, caso nao impacte no desempenho, realizar mudanca
         } else {
@@ -152,7 +152,7 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree){
         }
 
         //printf("chegou ate\n");
-        return InsereEntre(palavra, tree, i, letraDiferente);
+        return InsereEntre(palavra, tree, i, letraDiferente, compara);
     }
 }
 
@@ -210,6 +210,19 @@ void ContarPalavras(TipoArvore *tree, int *contador){
     }
 }
 
+void CalcularQntMemoriaPat(TipoArvore *tree, size_t *nos){
+
+    if (*tree != NULL){
+
+        *nos += sizeof((*tree));
+
+        if ((*tree)->idEstruturalNo == Externo){
+            return;
+        }
+        CalcularQntMemoriaPat(&(*tree)->No.NoInterno.Esq, nos);
+        CalcularQntMemoriaPat(&(*tree)->No.NoInterno.Dir, nos);
+    }
+}
 
 
 
