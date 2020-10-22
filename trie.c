@@ -1,3 +1,9 @@
+
+/*  
+ * Cabecalho
+ * 
+*/
+
 #include "trie.h"
 
 int InicializaNoTST( ApontadorTST * no){
@@ -51,6 +57,15 @@ void InserirTST(ApontadorTST *no, char *palavra, int *comparacoes){
 }
 
 void PesquisaTST(ApontadorTST no, char *palavra, int *comparacoes) {
+    /* 
+    * Funcao responsavel pela pesquisa na TST
+    * 
+    * Como funciona: 
+    * Percorre a arvore comparando os caracteres da chave e os dos nos
+    * se o caractere da chave for menor vai pra esq, maior direita e igual pro centro
+    * a pesquisa termina com um no nulo ou quando o proximo caractere da chave é um \0
+    */
+
     (*comparacoes)++;
     if(!no) { 
         printf("Chave não encontrada!!");
@@ -93,7 +108,28 @@ static void _EmOrdemTST(ApontadorTST no, char *buffer, int indice) {
 }
 
 void EmOrdemTST(ApontadorTST no) {
-    char Buffer[30]; /* não é possivel q uma palavra seja maior que 30 */ 
+    /*
+    * Função responsável por printar a TST em ordem alfabetica.
+    * 
+    * Como funciona:
+    * Ela usa um buffer definido a prior que armazena cada letra 
+    * de um nó de acordo com o caminho que a função segue (esq, direita, centro),
+    * e indo sempre da esquerda pra direita, quando chega em um nó de fim de palavra
+    * esse buffer é printando e o "percorrimento" da árvore segue normalmente
+    * 
+    */ 
+    
+    char Buffer[30]; 
     _EmOrdemTST(no, Buffer, 0);
 }
 
+int MemoriaUsada(ApontadorTST no) {
+    if(no) {
+        int esq = MemoriaUsada(no->Esquerda);
+        int dir = MemoriaUsada(no->Direita);
+        int centro = MemoriaUsada(no->Central);
+        return (int)(sizeof(*no) + esq + dir + centro);
+    } else {
+        return 0;
+    }
+}
