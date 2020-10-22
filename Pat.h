@@ -35,11 +35,12 @@ char Bit(int numIndiceDifere, char *palavra);
 int VerificarNoExterno(TipoArvore tree);
 TipoArvore CriaNoInterno(int i, TipoArvore *Esq, TipoArvore *Dir, char letra);
 TipoArvore CriaNoExterno(char *palavra);
-TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno);
-TipoArvore InserePat(char *palavra, TipoArvore *tree);
+TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno, int *compara);
+TipoArvore InserePat(char *palavra, TipoArvore *tree, int *compara);
 void Pesquisa(TipoArvore *tree, char *palavra, int *comparacoes);
 void PrintPatTree(TipoArvore *tree);
 void ContarPalavras(TipoArvore *tree, int *contador);
+void CalcularQntMemoriaPat(TipoArvore *tree, size_t *nos);
 
 //----------------------
 
