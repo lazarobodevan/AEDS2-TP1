@@ -46,7 +46,7 @@ TipoArvore CriaNoExterno(char *palavra){
     return pAjudante;
 }
 
-TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno, int *compara){
+TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInterno, int *comparacoes){
 
     TipoArvore pAjudante;
 
@@ -81,24 +81,24 @@ TipoArvore InsereEntre(char *palavra, TipoArvore *tree, int i, char letraNoInter
         /// Nos internos, compara a letra guardada dentro do No com a letra na posicao i (onde difere), se for maior -> direita
         if ((*comparacoes)++ && Bit((*tree)->No.NoInterno.indiceOndeDifere, palavra) >= (*tree)->No.NoInterno.letraNoPontoQueDifere){
 
-            (*tree)->No.NoInterno.Dir = InsereEntre(palavra, &(*tree)->No.NoInterno.Dir, i, letraNoInterno, compara);
+            (*tree)->No.NoInterno.Dir = InsereEntre(palavra, &(*tree)->No.NoInterno.Dir, i, letraNoInterno, comparacoes);
         } else {
 
-            (*tree)->No.NoInterno.Esq = InsereEntre(palavra, &(*tree)->No.NoInterno.Esq, i, letraNoInterno, compara);
+            (*tree)->No.NoInterno.Esq = InsereEntre(palavra, &(*tree)->No.NoInterno.Esq, i, letraNoInterno, comparacoes);
         }
     }
     return (*tree);
 }
 
-TipoArvore InserePat(char *palavra, TipoArvore *tree, int *compara){
+TipoArvore InserePat(char *palavra, TipoArvore *tree, int *comparacoes){
 
     char letra;
     char letraDiferente;
     TipoArvore pAjudante;
     int i;
-    printf("bao memo\n");
 
-    if ((*comparacoes)++ && *tree == NULL){
+    (*comparacoes)++;
+    if (*tree == NULL){
 
         return CriaNoExterno(palavra);
     } else {
@@ -134,6 +134,8 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree, int *compara){
                 return (*tree);
         }
 
+        printf("Palavra inserida!\n");
+
         /// Atencao, esta acessando o vetor a partir do indice 1
         i = 1;
 
@@ -152,7 +154,7 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree, int *compara){
         }
 
         //printf("chegou ate\n");
-        return InsereEntre(palavra, tree, i, letraDiferente, compara);
+        return InsereEntre(palavra, tree, i, letraDiferente, comparacoes);
     }
 }
 
@@ -214,7 +216,7 @@ void CalcularQntMemoriaPat(TipoArvore *tree, size_t *nos){
 
     if (*tree != NULL){
 
-        *nos += sizeof((*tree));
+        *nos += sizeof((**tree));
 
         if ((*tree)->idEstruturalNo == Externo){
             return;
