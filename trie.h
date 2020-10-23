@@ -21,3 +21,4 @@ void InserirTST(ApontadorTST* no, char *palavra, int *comparacoes);
 void PesquisaTST(ApontadorTST no, char *palavra, int *comparacoes);
 void EmOrdemTST(ApontadorTST no);
 int MemoriaUsada(ApontadorTST no);
+int ContarPalavrasTST(ApontadorTST no);

@@ -133,3 +133,17 @@ int MemoriaUsada(ApontadorTST no) {
         return 0;
     }
 }
+
+
+
+int  ContarPalavrasTST(ApontadorTST no) {
+    if(no) {
+        int noAtual = no->FinalPalavra;
+        int esq = ContarPalavrasTST(no->Esquerda);
+        int dir = ContarPalavrasTST(no->Direita);
+        int centro = ContarPalavrasTST(no->Central);
+        return esq + dir + centro + noAtual;
+    } else {
+        return 0;
+    }
+}
