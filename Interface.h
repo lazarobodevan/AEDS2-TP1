@@ -8,9 +8,9 @@
 #include "trie.h"
 
 void interface();
-void printOpc();
+void printOpcPat();
+void printOpcTst();
 void printOpcArvore();
-void leArquivoPatTst(TipoArvore *pat, NoTST **tst, FILE *arq, int *compPat, int *compTst);
 void leArquivoPat(TipoArvore *pat, FILE *arq, int *comparacoes);
 void leArquivoTst(NoTST **tst, FILE *arq, int *comparacoes);
 
