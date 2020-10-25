@@ -33,17 +33,18 @@ int CriarNoTST(ApontadorTST *no, char caractere){
 void InserirTST(ApontadorTST *no, char *palavra, int *comparacoes){
     (*comparacoes)++;
     if(!(*no)) CriarNoTST(no, *palavra); /* if node == null */
-    
-    (*comparacoes)++;
-    if((*palavra) > (*no)->caractere) { 
-        InserirTST(&(*no)->Direita, palavra, comparacoes);
-        return;
-    }
-    
-    (*comparacoes)++;
-    if((*palavra) < (*no)->caractere) {
-        InserirTST(&(*no)->Esquerda, palavra, comparacoes);
-        return;
+    else {
+        (*comparacoes)++;
+        if((*palavra) > (*no)->caractere) { 
+            InserirTST(&(*no)->Direita, palavra, comparacoes);
+            return;
+        }
+        
+        (*comparacoes)++;
+        if((*palavra) < (*no)->caractere) {
+            InserirTST(&(*no)->Esquerda, palavra, comparacoes);
+            return;
+        }
     }
 
     (*comparacoes)++;
