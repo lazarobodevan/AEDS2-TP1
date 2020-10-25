@@ -1,5 +1,6 @@
+
 //
-// Created by lazarus on 18/10/20.
+// Grupo: C-TAD-oido
 //
 
 #ifndef TP1_INTERFACE_H

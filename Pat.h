@@ -1,3 +1,8 @@
+
+//
+// Grupo: C-TAD-oido
+//
+
 #ifndef TP1_PAT_H
 #define TP1_PAT_H
 

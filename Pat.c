@@ -1,3 +1,8 @@
+
+//
+// Grupo: C-TAD-oido
+//
+
 #include "Pat.h"
 #include <string.h>
 

@@ -1,5 +1,6 @@
+
 //
-// Created by lazarus on 18/10/20.
+// Grupo: C-TAD-oido
 //
 
 #include "Interface.h"
@@ -131,6 +132,7 @@ void interface() {
     while (1) {
 
         if (opcArvore == 1){ //opcao de arvore == patricia
+
             printOpcPat();
             //Leitura da opcao
             scanf("%d", &opcOper);
@@ -147,7 +149,8 @@ void interface() {
                 printf("----> Para encerrar, insira um espaço!\n");
                 printf("---------------------------------------\n");
                 printf("\n");
-                while (1) {
+
+                while (1) { //insercao ininterrupta de palavra a palavra
                     printf("Palavra: ");
                     fgets(palavra, 20, stdin);
                     if (palavra[0] == ' ') {
@@ -167,7 +170,7 @@ void interface() {
                 printf("--> Memoria: %lu bytes\n", memPat);
                 memPat = 0;
 
-            } else if (opcOper == 2) {
+            } else if (opcOper == 2) { //leitura de arquivo pat
                 //variavel de tempo;
                 clock_t tempo;
 
@@ -182,13 +185,13 @@ void interface() {
                 printf("--> Comparacoes: %d\n", contCompPat);
                 contCompPat = 0;
 
-            } else if (opcOper == 3) {
+            } else if (opcOper == 3) { //pesquisa pat
                 char palavra[20];
                 int comp = 0;
 
                 //variavel de tempo;
                 clock_t tempo;
-                if(patricia == NULL){
+                if(patricia == NULL){ //impede tentativa de pesquisa em caso de arvore vazia
                     printf("--> Arvore vazia!\n");
 
                 }else {
@@ -204,16 +207,17 @@ void interface() {
                     contCompPat = 0;
                 }
 
-            } else if (opcOper == 4) {
+            } else if (opcOper == 4) { //exibir em ordem alfabetica pat
+
                 PrintPatTree(&patricia); // imprime em ordem alfabetica
 
-            } else if (opcOper == 5) {
+            } else if (opcOper == 5) { //contar palavras pat
+
                 int contPalaPat = 0;
                 ContarPalavras(&patricia, &contPalaPat);
                 printf("--> %d palavras!\n", contPalaPat);
 
-
-            } else if (opcOper == 6) {
+            } else if (opcOper == 6) { //troca de arvores
 
                 do {
                     printOpcArvore();
@@ -224,7 +228,7 @@ void interface() {
                 } while (opcArvore > 3 || opcArvore < 0);
                 getchar();
 
-            } else if(opcOper == 7){
+            } else if(opcOper == 7){ //encerra o programa
                 printf("\n----Fim de execução----\n");
                 exit(0);
             }
@@ -248,7 +252,7 @@ void interface() {
                 //variavel de tempo;
                 clock_t tempo;
 
-                while (1) {
+                while (1) { //insercao ininterrupta de palavra a palavra
                     printf("Palavra: ");
                     fgets(palavra, 20, stdin);
                     if (palavra[0] == ' ') {
@@ -269,7 +273,7 @@ void interface() {
 
                 printf("--> Memoria: %d bytes\n", MemoriaUsada(tst));
 
-            } else if (opcOper == 2) {
+            } else if (opcOper == 2) { //leitura de arquivo tst
                 //variavel de tempo;
                 clock_t tempo;
 
@@ -279,16 +283,15 @@ void interface() {
 
                 printf("--> Tempo: %lf s\n", ((double)tempo)/CLOCKS_PER_SEC);
                 printf("--> Memoria: %d bytes\n", MemoriaUsada(tst));
-                memTst = 0;
 
-            } else if (opcOper == 3) { //pesquisa
+            } else if (opcOper == 3) { //pesquisa tst
                 char palavra[20];
                 int comp = 0;
 
                 //variavel de tempo;
                 clock_t tempo;
 
-                if(tst == NULL){
+                if(tst == NULL){ //impede pesquisa em arvore vazia
                     printf("--> Arvore vazia!\n");
                 }else {
 
@@ -304,13 +307,15 @@ void interface() {
                     printf("--> Comparacoes: %d\n", comp);
                 }
 
-            } else if (opcOper == 4) {
+            } else if (opcOper == 4) { //exibir em ordem alfabetica
+
                 EmOrdemTST(tst); // imprime em ordem alfabetica
 
-            } else if (opcOper == 5) {
+            } else if (opcOper == 5) { //mostra a quantidade de palavras
+
                 printf("--> %d palavras!\n", ContarPalavrasTST(tst));
 
-            } else if (opcOper == 6) {
+            } else if (opcOper == 6) { //troca de arvore
                 do {
                     printOpcArvore();
                     scanf("%d", &opcArvore);
@@ -319,7 +324,7 @@ void interface() {
                     }
                 } while (opcArvore > 3 || opcArvore < 0);
                 getchar();
-            }else if(opcOper == 7){
+            }else if(opcOper == 7){ //encerra o programa
 
                 printf("\n----Fim de execução----\n");
                 exit(0);

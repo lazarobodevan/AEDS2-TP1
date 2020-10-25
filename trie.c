@@ -1,8 +1,8 @@
 
-/*  
- * Cabecalho
- * 
-*/
+
+//
+// Grupo: C-TAD-oido
+//
 
 #include "trie.h"
 
@@ -73,14 +73,13 @@ void PesquisaTST(ApontadorTST no, char *palavra, int *comparacoes) {
         return;
     }
 
-    (*comparacoes)++;
-    if(*palavra < no->caractere) 
+    if((*comparacoes)++ && *palavra < no->caractere)
         PesquisaTST(no->Esquerda, palavra, comparacoes);
-    else if(*palavra > no->caractere)
+    else if((*comparacoes)++ && *palavra > no->caractere)
         PesquisaTST(no->Direita, palavra, comparacoes);
     else {
-        if(*(palavra+1) == '\0') {
-            if(no->FinalPalavra){
+        if((*comparacoes)++ && *(palavra+1) == '\0') {
+            if((*comparacoes)++ && no->FinalPalavra){
                 printf("Chave encontrada!\n");
                 return;
             } else {
