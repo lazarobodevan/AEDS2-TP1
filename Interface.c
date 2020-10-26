@@ -99,7 +99,7 @@ void interface() {
     //declarando arvores
     TipoArvore patricia;
     ArvoreTST tst;
-    
+
     //inicializando
     InicializarPat(&patricia);
     InicializaNoTST(&tst);
@@ -118,6 +118,7 @@ void interface() {
 
     //escolha da arvore a ser utilizada
     do {
+        system("clear");
         printOpcArvore();
         scanf("%d", &opcArvore);
         if (opcArvore > 3 || opcArvore < 0) {
@@ -126,6 +127,7 @@ void interface() {
     } while (opcArvore > 3 || opcArvore < 0);
     getchar();
 
+    system("clear");
     //repeticao da interface de escolha de operacoes
     while (1) {
 
@@ -135,6 +137,7 @@ void interface() {
             //Leitura da opcao
             scanf("%d", &opcOper);
             getchar();
+            system("clear");
 
             if (opcOper == 1) { //inserir palavra pelo terminal
                 char palavra[20];
@@ -152,6 +155,7 @@ void interface() {
                     printf("Palavra: ");
                     fgets(palavra, 20, stdin);
                     if (palavra[0] == ' ') {
+                        system("clear");
                         printf("---> Encerrado insercao de palavras\n");
                         break;
                     }
@@ -159,6 +163,7 @@ void interface() {
                     tempo = clock();
                     patricia = InserePat(palavra, &patricia, &contCompPat);
                     tempo = clock() - tempo;
+                    system("clear");
                     printf("--> Tempo: %lf s\n", ((double)tempo)/CLOCKS_PER_SEC);
                     printf("--> Comparacoes: %d\n", contCompPat);
                     contCompPat = 0;
@@ -171,10 +176,13 @@ void interface() {
             } else if (opcOper == 2) { //leitura de arquivo pat
                 //variavel de tempo;
                 clock_t tempo;
-
+                
+                system("clear");
                 tempo = clock();
                 leArquivoPat(&patricia, arq, &contCompPat);
                 tempo = clock() - tempo;
+
+
 
                 printf("--> Tempo: %lf s \n", ((double)tempo)/CLOCKS_PER_SEC);
                 CalcularQntMemoriaPat(&patricia, &memPat);
@@ -190,6 +198,7 @@ void interface() {
                 //variavel de tempo;
                 clock_t tempo;
                 if(patricia == NULL){ //impede tentativa de pesquisa em caso de arvore vazia
+                    system("clear");
                     printf("--> Arvore vazia!\n");
 
                 }else {
@@ -200,17 +209,19 @@ void interface() {
                     tempo = clock();
                     Pesquisa(&patricia, palavra, &comp);
                     tempo = clock() - tempo;
+
+                    system("clear");
                     printf("--> Tempo: %lf s\n", ((double) tempo) / CLOCKS_PER_SEC);
                     printf("--> Comparacoes: %d\n", comp);
                     contCompPat = 0;
                 }
 
             } else if (opcOper == 4) { //exibir em ordem alfabetica pat
-
+                system("clear");
                 PrintPatTree(&patricia); // imprime em ordem alfabetica
 
             } else if (opcOper == 5) { //contar palavras pat
-
+                system("clear");
                 int contPalaPat = 0;
                 ContarPalavras(&patricia, &contPalaPat);
                 printf("--> %d palavras!\n", contPalaPat);
@@ -218,6 +229,7 @@ void interface() {
             } else if (opcOper == 6) { //troca de arvores
 
                 do {
+                    system("clear");
                     printOpcArvore();
                     scanf("%d", &opcArvore);
                     if (opcArvore > 3 || opcArvore < 0) {
@@ -225,14 +237,16 @@ void interface() {
                     }
                 } while (opcArvore > 3 || opcArvore < 0);
                 getchar();
+                system("clear");
 
             } else if(opcOper == 7){ //encerra o programa
+                system("clear");
                 printf("\n----Fim de execução----\n");
                 exit(0);
             }
 
         }else if(opcArvore == 2){ // Arvore TST
-
+            system("clear");
             printOpcTst();
             //Leitura da opcao
             scanf("%d", &opcOper);
@@ -263,6 +277,7 @@ void interface() {
                     tempo = clock();
                     InserirTST(&tst, palavra, &contCompTst);
                     tempo = clock() - tempo;
+                    system("clear");
                     printf("--> Tempo: %lf s\n", ((double)tempo)/CLOCKS_PER_SEC);
 
                     printf("--> Comparacoes: %d\n", contCompTst);
@@ -274,13 +289,16 @@ void interface() {
             } else if (opcOper == 2) { //leitura de arquivo tst
                 //variavel de tempo;
                 clock_t tempo;
+                contCompTst = 0;
 
                 tempo = clock();
                 leArquivoTst(&tst, arq, &contCompTst);
                 tempo = clock() - tempo;
-
+                system("clear");
                 printf("--> Tempo: %lf s\n", ((double)tempo)/CLOCKS_PER_SEC);
                 printf("--> Memoria: %d bytes\n", MemoriaUsada(tst));
+                printf("--> Comparacoes: %d\n", contCompTst);
+                contCompTst = 0;
 
             } else if (opcOper == 3) { //pesquisa tst
                 char palavra[20];
@@ -290,6 +308,7 @@ void interface() {
                 clock_t tempo;
 
                 if(tst == NULL){ //impede pesquisa em arvore vazia
+                    system("clear");
                     printf("--> Arvore vazia!\n");
                 }else {
 
@@ -301,20 +320,22 @@ void interface() {
                     PesquisaTST(tst, palavra, &comp);
                     tempo = clock() - tempo;
 
+                    system("clear");
                     printf("\n--> Tempo: %lf s\n", ((double) tempo) / CLOCKS_PER_SEC);
                     printf("--> Comparacoes: %d\n", comp);
                 }
 
             } else if (opcOper == 4) { //exibir em ordem alfabetica
-
+                system("clear");
                 EmOrdemTST(tst); // imprime em ordem alfabetica
 
             } else if (opcOper == 5) { //mostra a quantidade de palavras
-
+                system("clear");
                 printf("--> %d palavras!\n", ContarPalavrasTST(tst));
 
             } else if (opcOper == 6) { //troca de arvore
                 do {
+                    system("clear");
                     printOpcArvore();
                     scanf("%d", &opcArvore);
                     if (opcArvore > 3 || opcArvore < 0) {
