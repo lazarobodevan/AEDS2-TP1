@@ -1,0 +1,15 @@
+
+
+Grupo: C-TAD-oido
+
+-->Para compilar o programa:
+	(1)Abrir o terminal no local do projeto;
+	(2)Executar os comandos: gcc *.c -o nomeExecutavel
+	(3)Eceutar o programa: ./nomeExecutavel
+
+-->Para utilizar:
+	Digite o valor numerico apresentado na interface referente
+a operação desejada. Após isso, pressione enter.
+
+OBS.: Para manuseio de outros arquivos é necessárioq que o programa
+seja executado novamente
