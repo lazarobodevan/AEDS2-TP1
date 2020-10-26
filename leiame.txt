@@ -11,5 +11,5 @@ Grupo: C-TAD-oido
 	Digite o valor numerico apresentado na interface referente
 a operação desejada. Após isso, pressione enter.
 
-OBS.: Para manuseio de outros arquivos é necessárioq que o programa
+OBS.: Para manuseio de outros arquivos é necessário que o programa
 seja executado novamente
