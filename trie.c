@@ -30,6 +30,16 @@ int CriarNoTST(ApontadorTST *no, char caractere){
 
 
 void InserirTST(ApontadorTST *no, char *palavra, int *comparacoes){
+    /* 
+    * Funcao de inserir na TST
+    * 
+    * Como funciona:
+    * Ela insere uma palavra na arvore comparando os nos, quando encontra um no nulo, ela insere.
+    * se o no for nulo e o caractere ja estiver inserido, ela vai para o centro.
+    * Termina quando o proximo caractere da palavra e um \0
+    * 
+     */
+    
     (*comparacoes)++;
     if(!(*no)) CriarNoTST(no, *palavra); /* if node == null */
     else {
@@ -123,6 +133,15 @@ void EmOrdemTST(ApontadorTST no) {
 }
 
 int MemoriaUsada(ApontadorTST no) {
+    /* 
+    * Função para calcular a memoria usada.
+    * 
+    * Como funcioan: 
+    * Vai calculando a memoria de cada subarvore e soma a memoria do no atual com a memoria das
+    * subarvores.
+    * 
+     */
+
     if(no) {
         int esq = MemoriaUsada(no->Esquerda);
         int dir = MemoriaUsada(no->Direita);
@@ -136,6 +155,15 @@ int MemoriaUsada(ApontadorTST no) {
 
 
 int  ContarPalavrasTST(ApontadorTST no) {
+    /* 
+    * Função para calcular a quantidade de palavras usadas.
+    * 
+    * Como funcioan: 
+    * Vai calculando a memoria de cada subarvore e soma a memoria do no atual com a memoria das
+    * subarvores.
+    * 
+     */
+    
     if(no) {
         int noAtual = no->FinalPalavra;
         int esq = ContarPalavrasTST(no->Esquerda);
