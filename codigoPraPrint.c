@@ -28,7 +28,6 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree, int *comparacoes){
         }
         /// Caso a palavra ja esteja na arvore, eh encerrado o processo de insercao
         if ((*comparacoes)++ && strcmp(palavra, pAjudante->No.Chave) == 0){
-
                 printf("Chaves sao iguais\n");
                 return (*tree);
         }
