@@ -67,7 +67,6 @@ void leArquivoPat(TipoArvore *pat, FILE *arq, int *comparacoes){
         strcpy(&aux[strlen(aux)], "\0");
         *pat = InserePat(aux, pat, comparacoes);
     }
-    printf("--> Comparacoes totais = %d\n", *comparacoes);
 }
 
 void leArquivoTst(NoTST **tst, FILE *arq, int *comparacoes){
@@ -90,7 +89,6 @@ void leArquivoTst(NoTST **tst, FILE *arq, int *comparacoes){
         InserirTST(tst, aux, comparacoes);
     }
 
-    printf("--> Comparacoes totais = %d\n", *comparacoes);
 }
 
 void interface() {
@@ -101,7 +99,7 @@ void interface() {
     //declarando arvores
     TipoArvore patricia;
     ArvoreTST tst;
-
+    
     //inicializando
     InicializarPat(&patricia);
     InicializaNoTST(&tst);

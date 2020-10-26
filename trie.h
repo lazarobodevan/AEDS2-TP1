@@ -13,7 +13,6 @@ typedef struct NoTST* ArvoreTST;
 typedef struct NoTST {
     int FinalPalavra;
     char caractere;
-    int NumerodePalavras;
     ApontadorTST Central;
     ApontadorTST Esquerda;
     ApontadorTST Direita;

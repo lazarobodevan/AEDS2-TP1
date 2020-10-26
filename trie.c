@@ -20,7 +20,6 @@ int CriarNoTST(ApontadorTST *no, char caractere){
     }
 
     (*no)->caractere = caractere;
-    (*no)->NumerodePalavras = 0;
     (*no)->FinalPalavra = 0;
     (*no)->Central = NULL;
     (*no)->Esquerda = NULL;
