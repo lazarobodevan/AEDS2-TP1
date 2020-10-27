@@ -247,11 +247,11 @@ void interface() {
             }
 
         }else if(opcArvore == 2){ // Arvore TST
-            system("clear");
             printOpcTst();
             //Leitura da opcao
             scanf("%d", &opcOper);
             getchar();
+            system("clear");
 
             if (opcOper == 1) { //inserir palavra pelo terminal
                 char palavra[20];
