@@ -154,7 +154,8 @@ TipoArvore InserePat(char *palavra, TipoArvore *tree, int *comparacoes){
 
 void Pesquisa(TipoArvore *tree, char *palavra, int *comparacoes){
     /// Checa se o No atual eh do tipo externo
-    if ((*comparacoes)++ && VerificarNoExterno(*tree)){
+    (*comparacoes)++;
+    if (VerificarNoExterno(*tree)){
         /// Verifica se a palavra pesquisada eh igual a armazenada no No que entrou
         if ((*comparacoes)++ && (!strcmp((*tree)->No.Chave, palavra))){
 

@@ -176,7 +176,7 @@ void interface() {
             } else if (opcOper == 2) { //leitura de arquivo pat
                 //variavel de tempo;
                 clock_t tempo;
-                
+
                 system("clear");
                 tempo = clock();
                 leArquivoPat(&patricia, arq, &contCompPat);
@@ -206,11 +206,12 @@ void interface() {
                     fgets(palavra, 20, stdin);
                     palavra[strlen(palavra) - 1] = '\0'; //utilizado para remover o \n no final e colocar \0 no lugar
 
+                    system("clear");
                     tempo = clock();
                     Pesquisa(&patricia, palavra, &comp);
                     tempo = clock() - tempo;
 
-                    system("clear");
+
                     printf("--> Tempo: %lf s\n", ((double) tempo) / CLOCKS_PER_SEC);
                     printf("--> Comparacoes: %d\n", comp);
                     contCompPat = 0;
@@ -316,11 +317,12 @@ void interface() {
                     fgets(palavra, 20, stdin);
                     palavra[strlen(palavra) - 1] = '\0'; //utilizado para remover o \n no final e colocar \0 no lugar
 
+                    system("clear");
                     tempo = clock();
                     PesquisaTST(tst, palavra, &comp);
                     tempo = clock() - tempo;
 
-                    system("clear");
+
                     printf("\n--> Tempo: %lf s\n", ((double) tempo) / CLOCKS_PER_SEC);
                     printf("--> Comparacoes: %d\n", comp);
                 }
